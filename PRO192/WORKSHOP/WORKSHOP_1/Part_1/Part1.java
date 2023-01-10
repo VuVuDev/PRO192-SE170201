@@ -26,6 +26,10 @@ public class Part1 {
 			}
 		}
 		return sum;
+	} 
+	public static float averageOfMatrix(int sum, int rows, int cols) {
+		float average = (float) sum/(rows*cols);
+		return average;
 	}
 	public static void main(String[] args) {
 		int rows = 0;
@@ -41,6 +45,8 @@ public class Part1 {
 		enterMatrix(matrix, rows, cols);
 		System.out.print("\n Matrix values are: \n");
 		exportMatrix(matrix, rows, cols);
-		System.out.print("\nSum of matrix : " + sumOfMatrix(matrix, rows, cols));
+		int sum = sumOfMatrix(matrix, rows, cols);
+		System.out.print("\nSum of matrix : " + sum);
+		System.out.print("\nAverage of matrix : " + averageOfMatrix(sum, rows, cols));
 	}
 }
