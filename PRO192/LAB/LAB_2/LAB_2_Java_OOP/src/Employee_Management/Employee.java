@@ -1,12 +1,12 @@
 package Employee_Management;
 
 public class Employee implements Comparable<Employee> {
-	public String name;
-	public Integer age;
-	public String address;
-	public Double salary;
-	public Float coefficient;
-	public Double baseSalary;
+	private String name;
+	private Integer age;
+	private String address;
+	private Double salary;
+	private Float coefficient;
+	private Double baseSalary;
 
 	//Setter and Getter
 	public String getName() {
@@ -66,7 +66,7 @@ public class Employee implements Comparable<Employee> {
 		employeeSalary = (double) this.baseSalary * this.getCoefficient();
 		
 		return employeeSalary;
-	}	
+	}	                                    
 	
 	//export employee information 
 	public void exportEmployee() {
@@ -82,6 +82,7 @@ public class Employee implements Comparable<Employee> {
 		System.out.print("\t|\t");
 		System.out.print(this.getCoefficient());
 	}
+	
 	@Override
 	public int compareTo(Employee o) {
 		int compare = this.name.compareTo(o.name);

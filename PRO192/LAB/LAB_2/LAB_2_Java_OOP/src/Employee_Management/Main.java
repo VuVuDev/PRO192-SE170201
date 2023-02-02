@@ -24,7 +24,7 @@ public class Main {
 		System.out.println("LAB_2 OOP - Employee Management - VO VAN VU" );
 		System.out.println("____________________________________________");
 		System.out.println();
-		System.out.println("1. Hand input 10 employees information");
+		System.out.println("1. Hand input employees information");
 		System.out.println("2. Random 10 employees information (recommend)");
 		System.out.println("3. EXIT PROGRAM"); 
 		System.out.println("____________________________________________");
@@ -65,7 +65,93 @@ public class Main {
 	//Hand Input Employee
 	public void inputEmployee() {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
-		System.out.println("Oke la");
+		runInputFunctionMenu(employees);
+	}
+	
+	public void runInputFunctionMenu(ArrayList<Employee> employees) {
+		while(!exit_FunctMenu) {
+			printFunctionMenu();
+			Integer option = getOption_other();
+			executeInputFunction(option, employees);
+		}
+	}
+	public void printFunctionMenu() {
+		System.out.println("\nSelect the function you want to perform: ");
+		System.out.println("1. Add a employee.");
+		System.out.println("2. Add numbers of employee");
+		System.out.println("3. Display information of all employees.");
+		System.out.println("4. Display information of a employee you want to by index.");
+		System.out.println("5. Calculate total of salary.");
+		System.out.println("6. Sort list of employee descending by name.");
+		System.out.println("7. Sort list of employee descending by salary(BONUS).");
+		System.out.println("8. EXIT Function Menu");
+	}
+	public void executeInputFunction(Integer option, ArrayList<Employee> employees ) {
+		switch(option) {
+			case 1: addOneUser(employees); pressEnter(); break;
+			case 2: 
+					addNumbersOfUser(employees); pressEnter(); break;
+			case 3:
+				Employee[] employeeList = new Employee[employees.size()];
+				employeeList = employees.toArray(employeeList);
+				showAllEmployeesInfo(employeeList);
+				pressEnter();
+				break;
+			case 4: 
+				Employee[] employeeList_1 = new Employee[employees.size()];
+				employeeList = employees.toArray(employeeList_1);
+				showEmployeeInfo(employeeList_1);
+				break;
+			case 5: 
+				Employee[] employeeList_2 = new Employee[employees.size()];
+				employeeList = employees.toArray(employeeList_2);
+				totalOfSalary(employeeList_2);
+				break;
+			case 6:
+				Employee[] employeeList_3 = new Employee[employees.size()];
+				employeeList = employees.toArray(employeeList_3);
+				sortByName(employeeList_3);
+				break;
+			case 7: 
+				Employee[] employeeList_4 = new Employee[employees.size()];
+				employeeList = employees.toArray(employeeList_4);
+				sortBySalary(employeeList_4);
+				break;
+			case 8:
+				exit_FunctMenu = true;
+				System.out.println(" >> EXITED MENU FUNCTION! <<");	
+				break;
+			default: 
+				System.out.println("An unknow error has occured!");
+				System.out.println();
+		}
+	}
+	public void addNumbersOfUser(ArrayList<Employee> employees) {	
+		Integer number = getNumber();
+		System.out.println();
+		System.out.println("Entering the information of ".toUpperCase()+ number +" employees".toUpperCase());
+		
+		for (int i = 0; i < number; i++ ) {
+			System.out.println();
+			System.out.println("Entering data for employees " + (i+1) + ": ");
+			addOneUser(employees);
+		}
+	}
+	
+	public Integer getNumber() {
+		Integer number = 0;
+		Scanner scan = new Scanner(System.in);
+		while(number == 0) {
+			try {
+				System.out.print("Enter number of employee: ");
+				number = Integer.parseInt(scan.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println();
+				System.out.println("Invalid Value, Try Again!");
+				System.out.println();
+			}
+		}
+		return number;
 	}
 	public void addOneUser(ArrayList<Employee> employees) {
 		String name = inputName();
@@ -74,24 +160,58 @@ public class Main {
 		Double baseSalary = 1.05;
 		Float coefficient = inputCoefficient();
 		employees.add(new Employee(name, age, address, baseSalary, coefficient));
+		for(Employee ls : employees) {
+			ls.setSalary(ls.calculateSalary());
+			ls.setSalary(Math.floor(ls.getSalary()*1000)/1000);
+		}
+		
 	}
 	
 	public String inputName() {
-		String name = "";
+		String name;
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter name:");
+		name = scan.nextLine();
 		return name;
 	}
 	public Integer inputAge() {
-		Integer age = 1;
+		Integer age = 0;
+		Scanner scan = new Scanner(System.in);
+		while(age == 0) {
+			try {
+				System.out.print("Enter age (int): ");
+				age = Integer.parseInt(scan.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println();
+				System.out.println("Invalid Value, Try Again!");
+				System.out.println();
+			}
+		}
 		return age;
 	}
 	public String inputAddress() {
-		String address = "";
+		String address;
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter address:");
+		address = scan.nextLine();
 		return address;
 	}
 	public Float inputCoefficient() {
 		Float coefficient = (float) 0;
+		Scanner scan = new Scanner(System.in);
+		while (coefficient == 0) {
+			try {
+				System.out.print("Enter coefficient (float): ");
+				coefficient = Float.parseFloat(scan.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println();
+				System.out.println("Invalid Value, Try Again!");
+				System.out.println();
+			}
+		}
 		return coefficient;
-	}
+	} 
+	
 	//------------------------------------------------------------------------------------
 	//Random input for 10 employees
 	public void randomEmployee() {
@@ -114,8 +234,8 @@ public class Main {
 			coefficient = randomCoefficient();
 			baseSalary = 1.050000;
 			employeeList[i] = new Employee(name, age, address, baseSalary, coefficient);
-			employeeList[i].salary = employeeList[i].calculateSalary();
-			employeeList[i].salary = Math.floor(employeeList[i].salary*1000)/1000;
+			employeeList[i].setSalary(employeeList[i].calculateSalary());
+			employeeList[i].setSalary(Math.floor(employeeList[i].getSalary()*1000)/1000);
 			
 		}
 		//call function
@@ -133,8 +253,8 @@ public class Main {
 	//Random Employee Info
 	public String randomName() {
 		//Name source
-		String[] firstName = {"Kim", "Tran", "Luu", "Vu", "Mai", "Ly", "Van", "Lam", "Mac", "Hau", "Trieu"};
-		String[] middleName = {"Van", "Thi", "Gia", "Ha", "Hoa", "Duc", "Anh", "Phuc", "Huy", "Bao", "Quy"};
+		String[] firstName = {"Kim", "Tran", "Luu", "Vu", "Mai", "Ly", "Van", "Lam", "Mac", "Hau", "Trieu", "Khan"};
+		String[] middleName = {"Van", "Thi", "Gia", "Ha", "Hoa", "Duc", "Anh", "Phuc", "Huy", "Bao", "Quy", "Tan"};
 		String[] lastName = {"Khan", "Tien", "Hanh", "Nam", "Anh", "Duc", "Hoan", "Tue", "Thang", "Oanh", "Kien"};
 		//Take index to random
 		Random random = new Random();
@@ -190,7 +310,20 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		while(option < 1 || option > 8) {
 			try {
-				System.out.print("\nEnter your choice(1-5): ");
+				System.out.print("\nEnter your choice(1-6): ");
+				option = Integer.parseInt(sc.nextLine());
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid selection, Please try again.");
+			}
+		}
+		return option;
+	}
+	public Integer getOption_other() {
+		Integer option = -1;
+		Scanner sc = new Scanner(System.in);
+		while(option < 1 || option > 8) {
+			try {
+				System.out.print("\nEnter your choice(1-8): ");
 				option = Integer.parseInt(sc.nextLine());
 			} catch (NumberFormatException e) {
 				System.out.println("Invalid selection, Please try again.");
@@ -214,7 +347,7 @@ public class Main {
 				System.out.println();
 		}
 	}
-	
+//MANAGEMENT FUNCTION.................................................................
 	//show up All Employees Info
 	public void showAllEmployeesInfo(Employee[] list) {
 		System.out.println();
@@ -265,7 +398,7 @@ public class Main {
 	public Double totalOfSalaryCalculator(Employee[] list) {
 		Double total = (double) 0;
 		for (var item: list) {
-			total += item.salary;
+			total += item.getSalary();
 		}
 		return total;
 	}
@@ -321,6 +454,7 @@ public class Main {
 		}
 		pressEnter();
 	}
+// SUB DISPLAY FUNCTION
 	public void pressEnter() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("\nOke? Press Enter to continute...!");
