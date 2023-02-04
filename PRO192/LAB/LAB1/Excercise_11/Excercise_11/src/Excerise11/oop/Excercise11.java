@@ -47,7 +47,7 @@ public class Excercise11 {
 	public static void main(String[] args) {
 		Subject[] subjectList = new Subject[7];
 		String[] subjectName = {"Toan", "Ly", "Hoa", "Van", "Anh", "Su", "Dia"};
-
+		
 		for (int i = 0; i < subjectList.length; i++) {
 			subjectList[i] = new Subject();
 		}

@@ -366,7 +366,7 @@ public class Main {
 
 		while (index < 0 || index > 10) {
 			try {
-				System.out.print("\nEnter index of employee you want to (1 - 10): ");
+				System.out.print("\nEnter index of employee you want to (1 - "+ list.length + "): ");
 				index = Integer.parseInt(scan.nextLine());
 			} catch (NumberFormatException e) {
 				System.out.println("Invalid selection, Please try again.");

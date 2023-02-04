@@ -63,7 +63,7 @@ public class Employee implements Comparable<Employee> {
 	public Double calculateSalary() {
 		Double employeeSalary = (double) 0;
 		
-		employeeSalary = (double) this.baseSalary * this.getCoefficient();
+		employeeSalary = (double) this.baseSalary * this.coefficient;
 		
 		return employeeSalary;
 	}	                                    
