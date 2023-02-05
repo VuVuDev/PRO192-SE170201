@@ -83,7 +83,7 @@ public class Main {
 		System.out.println("4. Display information of a employee you want to by index.");
 		System.out.println("5. Calculate total of salary.");
 		System.out.println("6. Sort list of employee descending by name.");
-		System.out.println("7. Sort list of employee descending by salary(BONUS).");
+		System.out.println("7. Sort list of employee descending by coefficient(BONUS).");
 		System.out.println("8. EXIT Function Menu");
 	}
 	public void executeInputFunction(Integer option, ArrayList<Employee> employees ) {
@@ -115,7 +115,7 @@ public class Main {
 			case 7: 
 				Employee[] employeeList_4 = new Employee[employees.size()];
 				employeeList = employees.toArray(employeeList_4);
-				sortBySalary(employeeList_4);
+				sortByCoeficient(employeeList_4);
 				break;
 			case 8:
 				exit_FunctMenu = true;
@@ -302,7 +302,7 @@ public class Main {
 		System.out.println("2. Display information of a employee you want to by index.");
 		System.out.println("3. Calculate total of salary.");
 		System.out.println("4. Sort list of employee descending by name.");
-		System.out.println("5. Sort list of employee descending by salary(BONUS).");
+		System.out.println("5. Sort list of employee descending by coefficient(BONUS).");
 		System.out.println("6. EXIT Function Menu");
 	}
 	public Integer getOption() {
@@ -337,7 +337,7 @@ public class Main {
 			case 2: showEmployeeInfo(employeeList); break;
 			case 3: totalOfSalary(employeeList); break;
 			case 4: sortByName(employeeList); break;
-			case 5: sortBySalary(employeeList); break;
+			case 5: sortByCoeficient(employeeList); break;
 			case 6: 
 				exit_FunctMenu = true;
 				System.out.println(" >> EXITED MENU FUNCTION! <<");	
@@ -428,22 +428,22 @@ public class Main {
 		}
 		pressEnter();
 	}
-	public void sortBySalary(Employee[] list) {
+	public void sortByCoeficient(Employee[] list) {
 		List<Employee> ls = Arrays.asList(list);
 		System.out.println();
-		System.out.println("BEFORE SORT DESCENDING BY SALARY: ");
+		System.out.println("BEFORE SORT DESCENDING BY COEFFICIENT: ");
 		showAllEmployeesInfo(list);
 		System.out.println();
 		
 		Collections.sort(ls, new Comparator<Employee>() {
 			@Override
 			public int compare(Employee o1, Employee o2) {
-				return (int) (o2.getSalary() - o1.getSalary());
+				return (int) (o2.getCoefficient() - o1.getCoefficient());
 			}
 		});
 		
 		System.out.println();
-		System.out.println("AFTER SORT DESCENDING BY SALARY: ");
+		System.out.println("AFTER SORT DESCENDING BY COEFFICIENT: ");
 		System.out.println();
 		printHeader();
 		System.out.println();
