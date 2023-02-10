@@ -189,6 +189,7 @@ public class Main {
 		}
 		return age;
 	}
+	
 	public String inputAddress() {
 		String address;
 		Scanner scan = new Scanner(System.in);
