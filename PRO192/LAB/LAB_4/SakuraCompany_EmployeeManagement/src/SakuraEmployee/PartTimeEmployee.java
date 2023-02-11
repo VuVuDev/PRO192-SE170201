@@ -28,7 +28,7 @@ public class PartTimeEmployee extends Employee{
 	
 	@Override
 	public String toString() {
-		return super.toString() + "ROLE: PART-TIME " + "\n" +"DISCOUNT: " +discount + "\n" + "SALARY: " +salary + "\n";
+		return super.toString() + "ROLE: PART-TIME " + "\n" +"DISCOUNT: " +discount + "\n" + "SALARY: " +salary + " VND\n";
 	}
 	
 }

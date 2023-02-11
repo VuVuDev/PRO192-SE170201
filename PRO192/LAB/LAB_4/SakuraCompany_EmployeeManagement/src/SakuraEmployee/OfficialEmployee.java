@@ -49,6 +49,6 @@ public class OfficialEmployee extends Employee {
 	}
 	@Override
 	public String toString() {
-		return super.toString() + "ROLE: Official" + "\n" + "OT TIME: " + otTime + "\n" + "SALARY: " + salary + "VND\n";
+		return super.toString() + "ROLE: Official" + "\n" + "OT TIME: " + otTime + "\n" + "SALARY: " + salary + " VND\n";
 	}
 }
