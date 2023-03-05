@@ -31,7 +31,7 @@ public class OfficialEmployee extends Employee {
 		super();
 	}
 
-	public OfficialEmployee(Integer baseSalary, Float coefficient) {
+	public OfficialEmployee(String fullName, String address, Integer age, Float salary,Integer baseSalary, Float coefficient) {
 		super();
 		this.baseSalary = baseSalary;
 		this.coefficient = coefficient;

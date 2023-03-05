@@ -207,8 +207,18 @@ public class Main {
 		}
 	}
 	public void displayAllEmployeeSameAddress(ArrayList<Employee> employeeList) {
-		Employee[] ls = new Employee[employeeList.size()];
-		ls = employeeList.toArray(ls);
+		 Set<String> addresses = new HashSet<>();
+		 for (Employee ls : employeeList) {
+			 addresses.add(ls.getAddress());
+		 }
+		 for(String add : addresses) {
+			 System.out.println("Employees with address " + add + ": ");
+			 for(Employee employee : employeeList) {
+				 if(employee.getAddress().equals(add)) {
+					 System.out.println(employee.toString());
+				 }
+			 }
+		 }
 	}
 	public void pressEnter() {
 		System.err.println("\nAll done! Press Enter to continue...!");
