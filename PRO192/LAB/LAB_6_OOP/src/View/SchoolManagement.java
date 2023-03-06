@@ -1,5 +1,6 @@
 package View;
 
+//import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +22,6 @@ public class SchoolManagement extends Menu {
 	}
 	@Override
 	public void execute(int n) {
-		service.loadData("sch.txt");
 		switch(n) {
 		case 1: listAllStudent(); break;
 		case 2: addStudent(); break;
@@ -52,7 +52,6 @@ public class SchoolManagement extends Menu {
 				case 2: 
 					System.out.println("Enter name: ");
 					String text = scan.nextLine();
-					System.out.println("Cai Lz ma" + text);
 					temp = service.search(ls -> ls.getName().contains(text));
 					break;
 				default:

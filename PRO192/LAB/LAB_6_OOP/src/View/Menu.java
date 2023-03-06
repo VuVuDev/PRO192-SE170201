@@ -1,22 +1,18 @@
 package View;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public abstract class Menu {
-	public static final Scanner scan = new Scanner(System.in);
+	private static final Scanner scan = new Scanner(System.in);
 	private String title;
-	private ArrayList<String> options = new ArrayList<>();
-//	Validations valid = new Validations();
-	
-	//constructor
+	private ArrayList<String> options = new ArrayList<String>();
 	
 	public Menu(String title, String[] op) {
 		this.title = title;
-		
 		this.options.addAll(Arrays.asList(op));
 	}
-	
-	//display menu of function 
 	
 	public void menuDisplay() {
 		System.out.println("----------------------------------");

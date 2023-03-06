@@ -2,6 +2,8 @@ package Service;
 
 import java.io.File;
 import java.io.FileReader;
+import java.nio.file.Paths;
+//import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -11,11 +13,11 @@ public class SchoolService {
 	
 	private static ArrayList<Student> studentList = new ArrayList<Student>();
 	private static final Scanner scan = new Scanner(System.in);
-	static {
-		studentList.add(new Student("S01", "John Horstman", 7.8));
-		studentList.add(new Student("S02", "John Smith", 8.5));
-		studentList.add(new Student("S03", "Cays Horstman", 9.6));
-		studentList.add(new Student("S04", "David Beckham", 8.0));
+	
+	public SchoolService() {
+		super();
+		String path = Paths.get("").toAbsolutePath().toString();
+		loadData(path+"/src/sch.txt");
 	}
 	
 	public void loadData(String fName) {
