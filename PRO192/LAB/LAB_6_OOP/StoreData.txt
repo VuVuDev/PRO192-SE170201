@@ -1,0 +1,6 @@
+Student [id=S01, name=Jonh Horstman, aver=7.8]
+Student [id=S02, name=John Smith, aver=8.5]
+Student [id=S03, name=Cays Horstman, aver=9.6]
+Student [id=S04, name=David Beckham, aver=8.0]
+Student [id=S05, name=Vo Van Vu, aver=10.0]
+Student [id=23, name=Khanh , aver=32.0]

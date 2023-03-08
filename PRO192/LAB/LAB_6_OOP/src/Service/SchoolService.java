@@ -2,6 +2,8 @@ package Service;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Paths;
 //import java.nio.file.Paths;
 import java.util.*;
@@ -39,6 +41,20 @@ public class SchoolService {
 		}
 	}
 	
+	public void writeData() {
+		try {
+		      FileWriter wf = new FileWriter("StoreData.txt");
+		      for(Student std: studentList) {
+		    	  wf.write(std + System.lineSeparator());
+		    	}
+		      wf.close();
+		      System.out.println("Successfully wrote to the file.");
+		    } catch (IOException e) {
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+	}
+	
 	public void listAllStudent(ArrayList<Student> students) {
 		for (Student item : students) {
 			System.out.println(item.toString());
@@ -60,6 +76,7 @@ public class SchoolService {
 	public void addStudent() {
 		studentList.add(this.input());
 		System.out.println("Add successfully!");
+		writeData();
 	}
 	public Student input() {
 		System.out.println("ID: ");
